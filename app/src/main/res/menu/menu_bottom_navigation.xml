@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_movie"
+        android:icon="@drawable/bottom_navigation_selector_movie"
+        android:title="@string/tab_movies_name" />
+
+
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/bottom_navigation_selector_profile"
+        android:title="@string/tab_profile_name" />
+
+</menu>

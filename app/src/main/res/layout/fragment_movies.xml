@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/topRatedRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:clipToPadding="false" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/textView8"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_marginTop="16dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="@string/movies_top_rated_title"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textSize="28sp"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textStyle="bold" />&ndash;&gt;-->
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/topRatedRecyclerView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:clipToPadding="false" />-->
+
+
+<!--        </LinearLayout>-->
+
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+
+</LinearLayout>
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginTop="12dp"-->
+<!--android:orientation="vertical">-->
+
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginStart="8dp"-->
+<!--    android:text="@string/movies_now_playing_title"-->
+<!--    android:textColor="@color/color_tab_unselected"-->
+<!--    android:textSize="22sp"-->
+<!--    android:textStyle="bold" />-->
+
+<!--<androidx.recyclerview.widget.RecyclerView-->
+<!--    android:id="@+id/nowPlayingRecyclerView"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginStart="8dp"-->
+<!--    android:layout_marginTop="8dp"-->
+<!--    android:clipToPadding="false" />-->
+
+<!--</LinearLayout>-->
+
+<!--<LinearLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_marginTop="12dp"-->
+<!--android:layout_marginBottom="12dp"-->
+<!--android:orientation="vertical">-->
+
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginStart="8dp"-->
+<!--    android:text="@string/movies_popular_title"-->
+<!--    android:textColor="@color/color_tab_unselected"-->
+<!--    android:textSize="22sp"-->
+<!--    android:textStyle="bold" />-->
+
+<!--<androidx.recyclerview.widget.RecyclerView-->
+<!--    android:id="@+id/popularRecyclerView"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginStart="8dp"-->
+<!--    android:layout_marginTop="8dp"-->
+<!--    android:clipToPadding="false" />-->
+
+<!--</LinearLayout>-->

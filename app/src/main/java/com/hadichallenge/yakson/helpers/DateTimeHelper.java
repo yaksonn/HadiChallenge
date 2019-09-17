@@ -17,8 +17,8 @@ public class DateTimeHelper {
 
     public static String getDateWithMonthName(String dateString) {
 
-        SimpleDateFormat formatterActual = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        SimpleDateFormat formatterExpected = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
+        SimpleDateFormat formatterActual = new SimpleDateFormat("yyyy-MM-dd",new Locale("tr"));
+        SimpleDateFormat formatterExpected = new SimpleDateFormat("MMMM yyyy",new Locale("tr"));
 
         try {
             Date dateActual = formatterActual.parse(dateString);

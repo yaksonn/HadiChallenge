@@ -10,8 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/moviesTopRatedContainer"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:padding="12dp">
+        android:layout_height="140dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -22,53 +23,49 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <ImageView
                     android:id="@+id/topRatedMoviesImage"
                     android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_height="110dp"
                     android:alpha="0.8"
-                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     tools:src="@tools:sample/backgrounds/scenic[7]" />
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/DarkGrayBoldTextView"
                         android:id="@+id/movieTitleTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:textColor="@color/color_text_gray"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
                         tools:text="Avengers" />
 
                     <TextView
+                        style="@style/LightGrayRegularTextView"
                         android:id="@+id/movieReleaseDateTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:textColor="@color/color_text_gray"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="13sp"
                         tools:text="Avengers" />
                 </LinearLayout>
-
-
 
             </LinearLayout>
 

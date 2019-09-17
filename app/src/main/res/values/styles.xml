@@ -21,4 +21,24 @@
         <item name="colorControlActivated">@color/color_star_active</item>
     </style>
 
+
+    <style name="LightGrayRegularTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/firasansregular</item>
+        <item name="android:textColor">@color/color_text_gray_ligth</item>
+    </style>
+
+    <style name="DarkGrayBoldTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/firasansbold</item>
+        <item name="android:textColor">@color/color_text_gray</item>
+    </style>
+
+    <style name="DarkGrayRegularTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/firasansregular</item>
+        <item name="android:textColor">@color/color_text_gray</item>
+    </style>
+
+    <style name="WhiteBoldTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/firasansbold</item>
+        <item name="android:textColor">@color/color_white</item>
+    </style>
 </resources>

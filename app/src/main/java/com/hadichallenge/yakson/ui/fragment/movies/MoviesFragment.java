@@ -43,16 +43,14 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
     private String queryTextFromSearch = "";
     private MenuItem mSearchItem;
     private SearchView searchView;
-
-    @BindView(R.id.topRatedRecyclerView)
-    RecyclerView topRatedRecyclerView;
-    @BindView(R.id.swipeLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
-
-
     private MoviesViewModel movieViewModel = new MoviesViewModel();
     private ArrayList<MovieResultModel> movieResultArrayList = new ArrayList<>();
-    private MovieSearchResultRecyclerAdapter moviesTopRatedRecyclerAdapter;
+    private MovieSearchResultRecyclerAdapter movieSearchResultRecyclerAdapter;
+
+    @BindView(R.id.movieSearchResultRecyclerView)
+    RecyclerView movieSearchResultRecyclerView;
+    @BindView(R.id.swipeLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -78,14 +76,12 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
     }
 
     private void bindToViewModel() {
-
         movieViewModel.movieResponseTop.observe(this, movies -> {
-
             if (movies != null) {
                 fillListAndNotifyAdapter(movies.movieResultModels.getResults());
             }
         });
-        movieViewModel.error.observe(this, s -> Log.d("Result : ", "çalışmıyorfjkenbjfhgrdnfıjksnmklmel"));
+        movieViewModel.error.observe(this, s -> Log.d("Result : ", "Doesnt work"));
     }
 
     private void initViews() {
@@ -96,22 +92,19 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
     private void initRecyclerView() {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(HadiLiveChallengeApp.getInstance().getCurrentActivity());
-
-        moviesTopRatedRecyclerAdapter = new MovieSearchResultRecyclerAdapter(movieResultArrayList,this, (view, position) -> {
+        movieSearchResultRecyclerAdapter = new MovieSearchResultRecyclerAdapter(movieResultArrayList,this, (view, position) -> {
             startActivity(new Intent(BaseActivity.currentActivity, MoviesDetailActivity.class)
                     .putExtra("videoId", movieResultArrayList.get(position).getId()));
         });
-
-        topRatedRecyclerView.setLayoutManager(layoutManager);
-        topRatedRecyclerView.setAdapter(moviesTopRatedRecyclerAdapter);
-        moviesTopRatedRecyclerAdapter.notifyDataSetChanged();
+        movieSearchResultRecyclerView.setLayoutManager(layoutManager);
+        movieSearchResultRecyclerView.setAdapter(movieSearchResultRecyclerAdapter);
+        movieSearchResultRecyclerAdapter.notifyDataSetChanged();
     }
 
 
     private void fillListAndNotifyAdapter(ArrayList<MovieResultModel> movieResultModels) {
-
         movieResultArrayList.addAll(movieResultModels);
-        moviesTopRatedRecyclerAdapter.notifyDataSetChanged();
+        movieSearchResultRecyclerAdapter.notifyDataSetChanged();
         if (swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.setRefreshing(false);
         }
@@ -126,8 +119,6 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
 
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -136,10 +127,6 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
                     searchView.setIconified(true);
                 }
                 mSearchItem.collapseActionView();
-
-
-
-
                 return false;
             }
 
@@ -147,22 +134,17 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
             public boolean onQueryTextChange(String query) {
 
                 if (query.length() > 3) {
-
                     Handler mHandler = new Handler();
-
                     new Thread(() -> mHandler.post(() -> {
-
                         if (!swipeRefreshLayout.isRefreshing()) {
                             swipeRefreshLayout.setRefreshing(true);
                         }
-
                         if (!query.equals(queryTextFromSearch)) {
                             movieResultArrayList.clear();
                         }
                         currentPage = 1;
                         queryTextFromSearch = query;
                         loadNextDataFromApi(query, currentPage);
-
                     })).start();
                 }
                 return false;
@@ -177,12 +159,9 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
     }
 
     private void fetchMoviesTop(String queryText, Integer page) {
-
         if (!swipeRefreshLayout.isRefreshing()) {
-
             swipeRefreshLayout.setRefreshing(true);
         }
-
         MovieModel.Movie.Request request = new MovieModel.Movie.Request(
                 ApiConstant.KEY,
                 queryText, page
@@ -192,21 +171,15 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
 
     @Override
     public void onRefresh() {
-
         currentPage = 1; // reset
-
-        topRatedRecyclerView.setVisibility(View.GONE);
-
+        movieSearchResultRecyclerView.setVisibility(View.GONE);
         loadNextDataFromApi(queryTextFromSearch, currentPage);
     }
 
     @Override
     public void onScrollToBottom(boolean visible) {
-
         if (visible) {
-
             currentPage++;
-
             loadNextDataFromApi(queryTextFromSearch, currentPage);
         }
     }

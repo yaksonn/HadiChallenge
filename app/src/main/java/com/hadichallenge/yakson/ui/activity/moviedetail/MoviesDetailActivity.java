@@ -73,18 +73,14 @@ public class MoviesDetailActivity extends BaseActivity {
         bindToViewModel();
     }
 
-
     private void getDataFromIntent() {
         videoId = getIntent().getIntExtra("videoId", 0);
         fetchDetail();
         fetchCredits();
     }
 
-
     private void bindToViewModel() {
-
         moviesDetailViewModel.movieResponseDetail.observe(this, movies -> {
-
             if (movies != null) {
                 movieResultModel = movies.movieResultModels;
                 setFields(movieResultModel);
@@ -158,7 +154,6 @@ public class MoviesDetailActivity extends BaseActivity {
                 finish();
                 break;
         }
-
     }
 
     private void fetchDetail() {

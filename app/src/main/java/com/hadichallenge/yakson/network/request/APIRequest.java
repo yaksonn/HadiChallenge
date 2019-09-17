@@ -7,9 +7,7 @@ import retrofit2.Response;
 public class APIRequest<Element> {
 
     public void make(Call<Element> call, APIResponseCallback<Element> callback) {
-
         call.enqueue(new Callback<Element>() {
-
             @Override
             public void onResponse(Call<Element> call, Response<Element> response) {
                 if (response.isSuccessful()) {
@@ -22,7 +20,6 @@ public class APIRequest<Element> {
                     callback.onFailure("error", response.code());
                 }
             }
-
             @Override
             public void onFailure(Call<Element> call, Throwable t) {
                 t.getMessage();

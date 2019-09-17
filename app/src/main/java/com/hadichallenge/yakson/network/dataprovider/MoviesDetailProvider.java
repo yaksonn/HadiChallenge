@@ -1,4 +1,4 @@
-package com.hadichallenge.yakson.network.dataprovider.movieprovider;
+package com.hadichallenge.yakson.network.dataprovider;
 
 import com.hadichallenge.yakson.models.MovieModel;
 import com.hadichallenge.yakson.models.MovieResultModel;

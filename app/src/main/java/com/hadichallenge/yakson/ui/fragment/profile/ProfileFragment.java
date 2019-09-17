@@ -18,7 +18,6 @@ public class ProfileFragment extends BaseFragment {
     @BindView(R.id.profileImageView)
     CircleImageView profileImageView;
 
-
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
     }
@@ -27,7 +26,6 @@ public class ProfileFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_profile;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

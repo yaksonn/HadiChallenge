@@ -2,25 +2,20 @@ package com.hadichallenge.yakson.ui.fragment.movies;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProviders;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.hadichallenge.yakson.HadiLiveChallengeApp;
 import com.hadichallenge.yakson.R;
 import com.hadichallenge.yakson.adapters.MovieSearchResultRecyclerAdapter;
@@ -39,6 +34,12 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
 
     public static final String FRAGMENT_NAME = "moviesFragment";
 
+
+    @BindView(R.id.movieSearchResultRecyclerView)
+    RecyclerView movieSearchResultRecyclerView;
+    @BindView(R.id.swipeLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private int currentPage = 1;
     private String queryTextFromSearch = "";
     private MenuItem mSearchItem;
@@ -46,11 +47,6 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
     private MoviesViewModel movieViewModel = new MoviesViewModel();
     private ArrayList<MovieResultModel> movieResultArrayList = new ArrayList<>();
     private MovieSearchResultRecyclerAdapter movieSearchResultRecyclerAdapter;
-
-    @BindView(R.id.movieSearchResultRecyclerView)
-    RecyclerView movieSearchResultRecyclerView;
-    @BindView(R.id.swipeLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
 
     public static MoviesFragment newInstance() {
         return new MoviesFragment();
@@ -75,6 +71,68 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
         return R.layout.fragment_movies;
     }
 
+    /*
+     * Search data from option menu by searchview
+     */
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.search_menu, menu);
+        mSearchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) mSearchItem.getActionView();
+        searchView.setIconified(true);
+
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchView.clearFocus();
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String query) {
+                if (query.length() > 3) {
+                    searchView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!swipeRefreshLayout.isRefreshing()) {
+                                swipeRefreshLayout.setRefreshing(true);
+                            }
+                            if (!query.equals(queryTextFromSearch)) {
+                                movieResultArrayList.clear();
+                            }
+                            currentPage = 1;
+                            queryTextFromSearch = query;
+                            loadNextDataFromApi(query, currentPage);
+                            searchView.clearFocus();
+                        }
+                    });
+                }
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+    @Override
+    public void onRefresh() {
+        currentPage = 1; // reset
+        movieSearchResultRecyclerView.setVisibility(View.GONE);
+        loadNextDataFromApi(queryTextFromSearch, currentPage);
+    }
+
+    @Override
+    public void onScrollToBottom(boolean visible) {
+        if (visible) {
+            currentPage++;
+            loadNextDataFromApi(queryTextFromSearch, currentPage);
+        }
+    }
+
+    /*
+     * Bind to ViewModel
+     */
     private void bindToViewModel() {
         movieViewModel.movieResponseTop.observe(this, movies -> {
             if (movies != null) {
@@ -84,13 +142,15 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
         movieViewModel.error.observe(this, s -> Log.d("Result : ", "Doesnt work"));
     }
 
+    /*
+     * prepareView
+     */
     private void initViews() {
         swipeRefreshLayout.setOnRefreshListener(this);
         initRecyclerView();
     }
 
     private void initRecyclerView() {
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(HadiLiveChallengeApp.getInstance().getCurrentActivity());
         movieSearchResultRecyclerAdapter = new MovieSearchResultRecyclerAdapter(movieResultArrayList,this, (view, position) -> {
             startActivity(new Intent(BaseActivity.currentActivity, MoviesDetailActivity.class)
@@ -110,50 +170,6 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
         }
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_menu, menu);
-        mSearchItem = menu.findItem(R.id.action_search);
-        searchView = (SearchView) mSearchItem.getActionView();
-        searchView.setIconified(true);
-
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                searchView.clearFocus();
-                if (!searchView.isIconified()) {
-                    searchView.setIconified(true);
-                }
-                mSearchItem.collapseActionView();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-
-                if (query.length() > 3) {
-                    Handler mHandler = new Handler();
-                    new Thread(() -> mHandler.post(() -> {
-                        if (!swipeRefreshLayout.isRefreshing()) {
-                            swipeRefreshLayout.setRefreshing(true);
-                        }
-                        if (!query.equals(queryTextFromSearch)) {
-                            movieResultArrayList.clear();
-                        }
-                        currentPage = 1;
-                        queryTextFromSearch = query;
-                        loadNextDataFromApi(query, currentPage);
-                    })).start();
-                }
-                return false;
-            }
-        });
-        super.onCreateOptionsMenu(menu, inflater);
-
-    }
-
     private void loadNextDataFromApi(String queryText, Integer page) {
         fetchMoviesTop(queryText, page);
     }
@@ -167,20 +183,5 @@ public class MoviesFragment extends BaseFragment implements SwipeRefreshLayout.O
                 queryText, page
         );
         movieViewModel.getMovies(request);
-    }
-
-    @Override
-    public void onRefresh() {
-        currentPage = 1; // reset
-        movieSearchResultRecyclerView.setVisibility(View.GONE);
-        loadNextDataFromApi(queryTextFromSearch, currentPage);
-    }
-
-    @Override
-    public void onScrollToBottom(boolean visible) {
-        if (visible) {
-            currentPage++;
-            loadNextDataFromApi(queryTextFromSearch, currentPage);
-        }
     }
 }

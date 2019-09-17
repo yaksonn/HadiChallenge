@@ -7,17 +7,14 @@ import com.hadichallenge.yakson.helpers.DialogHelper;
 import com.hadichallenge.yakson.models.MovieModel;
 import com.hadichallenge.yakson.models.MovieResultModel;
 import com.hadichallenge.yakson.models.MovieTvSeriesCreditsModel;
-import com.hadichallenge.yakson.network.dataprovider.movieprovider.MoviesDetailProvider;
+import com.hadichallenge.yakson.network.dataprovider.MoviesDetailProvider;
 import com.hadichallenge.yakson.network.request.APIResponseCallback;
 
 public class MoviesDetailViewModel extends ViewModel {
 
     public MutableLiveData<MovieModel.MovieDetail.Response> movieResponseDetail = new MutableLiveData<>();
     public MutableLiveData<MovieTvSeriesCreditsModel.Credits.Response> movieCredit = new MutableLiveData<>();
-
-
     public MutableLiveData<String> error = new MutableLiveData<>();
-
 
     public void getMoviesDetail(MovieModel.MovieDetail.Request request) {
 

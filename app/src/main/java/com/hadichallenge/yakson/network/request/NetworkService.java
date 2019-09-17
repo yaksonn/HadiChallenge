@@ -61,7 +61,6 @@ public class NetworkService {
     }
 
     public ApiInterface getApi() {
-
         return mApi;
     }
 

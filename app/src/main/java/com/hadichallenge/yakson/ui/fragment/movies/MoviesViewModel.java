@@ -5,16 +5,14 @@ import androidx.lifecycle.ViewModel;
 
 import com.hadichallenge.yakson.helpers.DialogHelper;
 import com.hadichallenge.yakson.models.MovieModel;
-import com.hadichallenge.yakson.network.dataprovider.movieprovider.MoviesProvider;
+import com.hadichallenge.yakson.network.dataprovider.MoviesProvider;
 import com.hadichallenge.yakson.network.request.APIResponseCallback;
 
 public class MoviesViewModel extends ViewModel {
 
     public MutableLiveData<MovieModel.Movie.Response> movieResponseTop = new MutableLiveData<>();
 
-
     public MutableLiveData<String> error = new MutableLiveData<>();
-
 
     public void getMovies(MovieModel.Movie.Request request) {
 

@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import android.view.View;
 
 import com.hadichallenge.yakson.R;
-import com.hadichallenge.yakson.ui.fragment.BaseFragment;
+import com.hadichallenge.yakson.ui.base.BaseFragment;
 
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;

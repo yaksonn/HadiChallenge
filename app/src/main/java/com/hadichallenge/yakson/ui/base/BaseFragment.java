@@ -1,4 +1,4 @@
-package com.hadichallenge.yakson.ui.fragment;
+package com.hadichallenge.yakson.ui.base;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;

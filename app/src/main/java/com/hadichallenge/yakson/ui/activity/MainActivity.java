@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.hadichallenge.yakson.R;
 import com.hadichallenge.yakson.helpers.FragmentHelper;
+import com.hadichallenge.yakson.ui.base.BaseActivity;
 import com.hadichallenge.yakson.ui.fragment.movies.MoviesFragment;
 import com.hadichallenge.yakson.ui.fragment.profile.ProfileFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;

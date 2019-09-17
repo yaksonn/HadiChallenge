@@ -2,7 +2,7 @@ package com.hadichallenge.yakson.helpers;
 
 import androidx.core.content.ContextCompat;
 
-import com.hadichallenge.yakson.ui.activity.BaseActivity;
+import com.hadichallenge.yakson.ui.base.BaseActivity;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 

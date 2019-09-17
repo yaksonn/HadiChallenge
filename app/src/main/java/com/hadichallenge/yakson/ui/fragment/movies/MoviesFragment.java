@@ -22,9 +22,9 @@ import com.hadichallenge.yakson.adapters.MovieSearchResultRecyclerAdapter;
 import com.hadichallenge.yakson.models.MovieModel;
 import com.hadichallenge.yakson.models.MovieResultModel;
 import com.hadichallenge.yakson.network.core.ApiConstant;
-import com.hadichallenge.yakson.ui.activity.BaseActivity;
+import com.hadichallenge.yakson.ui.base.BaseActivity;
 import com.hadichallenge.yakson.ui.activity.moviedetail.MoviesDetailActivity;
-import com.hadichallenge.yakson.ui.fragment.BaseFragment;
+import com.hadichallenge.yakson.ui.base.BaseFragment;
 
 import java.util.ArrayList;
 

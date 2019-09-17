@@ -3,7 +3,7 @@ package com.hadichallenge.yakson.helpers;
 import android.widget.ImageView;
 
 import com.hadichallenge.yakson.R;
-import com.hadichallenge.yakson.ui.activity.BaseActivity;
+import com.hadichallenge.yakson.ui.base.BaseActivity;
 import com.squareup.picasso.Picasso;
 
 

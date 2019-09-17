@@ -2,7 +2,7 @@ package com.hadichallenge.yakson;
 
 import android.app.Application;
 
-import com.hadichallenge.yakson.ui.activity.BaseActivity;
+import com.hadichallenge.yakson.ui.base.BaseActivity;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 

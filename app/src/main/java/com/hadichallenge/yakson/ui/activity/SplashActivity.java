@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.hadichallenge.yakson.R;
+import com.hadichallenge.yakson.ui.base.BaseActivity;
 
 public class SplashActivity extends BaseActivity {
 

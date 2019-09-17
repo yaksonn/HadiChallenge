@@ -23,7 +23,7 @@ import com.hadichallenge.yakson.models.MovieResultModel;
 import com.hadichallenge.yakson.models.MovieTvSeriesCreditsModel;
 import com.hadichallenge.yakson.models.MovieTvSeriesGenresModel;
 import com.hadichallenge.yakson.network.core.ApiConstant;
-import com.hadichallenge.yakson.ui.activity.BaseActivity;
+import com.hadichallenge.yakson.ui.base.BaseActivity;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 

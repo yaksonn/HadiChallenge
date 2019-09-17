@@ -3,7 +3,7 @@ package com.hadichallenge.yakson.helpers;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.hadichallenge.yakson.ui.activity.BaseActivity;
+import com.hadichallenge.yakson.ui.base.BaseActivity;
 
 public class FragmentHelper {
     public static void attachFragmentWithoutBackstack(Fragment newFragment, int containerId) {

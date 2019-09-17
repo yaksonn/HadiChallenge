@@ -5,7 +5,7 @@ import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.hadichallenge.yakson.ui.activity.BaseActivity;
+import com.hadichallenge.yakson.ui.base.BaseActivity;
 
 public class DisplayHelper {
 

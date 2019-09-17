@@ -1,4 +1,4 @@
-package com.hadichallenge.yakson.ui.activity;
+package com.hadichallenge.yakson.ui.base;
 
 import android.os.Build;
 import android.os.Bundle;

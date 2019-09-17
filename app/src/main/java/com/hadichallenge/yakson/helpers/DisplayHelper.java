@@ -11,8 +11,9 @@ public class DisplayHelper {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void changeStatusColor() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
             return;
+        }
         Window window = BaseActivity.currentActivity.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

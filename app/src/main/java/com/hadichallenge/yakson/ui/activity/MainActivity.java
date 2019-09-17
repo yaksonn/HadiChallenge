@@ -38,7 +38,6 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-
     private void initViews() {
         initBottomNavigation();
     }
@@ -63,25 +62,22 @@ public class MainActivity extends BaseActivity {
                 switch (item.getItemId()) {
 
                     case R.id.action_movie:
-                        if (currentFragmentName.equals(MoviesFragment.FRAGMENT_NAME))
+                        if (currentFragmentName.equals(MoviesFragment.FRAGMENT_NAME)){
                             return false;
-
+                        }
                         FragmentHelper.attachFragmentWithoutBackstack(MoviesFragment.newInstance(), R.id.fragmentContainer);
-
                         currentFragmentName = MoviesFragment.FRAGMENT_NAME;
                         return true;
+
                     case R.id.action_profile:
-                        if (currentFragmentName.equals(ProfileFragment.FRAGMENT_NAME))
+
+                        if (currentFragmentName.equals(ProfileFragment.FRAGMENT_NAME)){
                             return false;
-
+                        }
                         FragmentHelper.attachFragmentWithoutBackstack(ProfileFragment.newInstance(), R.id.fragmentContainer);
-
                         currentFragmentName = ProfileFragment.FRAGMENT_NAME;
-
-
                         return true;
                 }
-
                 return false;
             }
         });

@@ -10,11 +10,6 @@
     <string name="tab_movies_name">MOVIES</string>
     <string name="tab_profile_name">PROFILE</string>
 
-    <!--MoviesFragment-->
-    <string name="movies_top_rated_title">Top Rated Movies</string>
-    <string name="movies_popular_title">Popular</string>
-    <string name="movies_now_playing_title">Now Playing</string>
-
 
     <!--ProfileFragment-->
     <string name="profile_title">Profile</string>
